@@ -1,33 +1,21 @@
-import axios from "axios";
+
 import React from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import { useData } from "../API Context/DataProvider";
 const CardFields = () => {
-  const [bookName, setBookName] = React.useState("");
-  const [isloading, setIsLoading] = React.useState(false);
-  const onSubmit = () => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://openlibrary.org/search.json?title=${bookName}`,
-        );
-        console.log(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
+    const { bookName, setBookName, isloading, fetchBooks } = useData();
 
-        setIsLoading(false);
-      }
-    };  
-    setIsLoading(true);
-    fetchData();
+  const onSubmit = () => {
+    fetchBooks(bookName);
     setBookName("");
   };
   return (
-    <div>
+    <div className="w-full h-full flex flex-col justify-center items-center p-6">
       {isloading ? (
       <LoadingSpinner />
       ) : (
           <>
+          <img  className="size-70" src="src/assets/images/Book.png"/>
           <h1 className="m-2 italic font-bold text-zinc-900">
             Enter Your Favourite Book Name
           </h1>
