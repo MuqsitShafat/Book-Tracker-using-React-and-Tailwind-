@@ -30,7 +30,7 @@ const CardFields = () => {
             />
             <button
               onClick={onSubmit}
-              className="m-2 rounded-lg bg-amber-800 p-2"
+              className="m-2 rounded-lg bg-amber-800 p-2 cursor-pointer active:scale-95"
             >
               Search
             </button>
